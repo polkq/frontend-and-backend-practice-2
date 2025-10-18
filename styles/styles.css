@@ -1,0 +1,318 @@
+/* ===== ОСНОВНЫЕ СТИЛИ ===== */
+:root {
+    --primary-color: #0d6efd;
+    --secondary-color: #6c757d;
+    --success-color: #198754;
+    --info-color: #0dcaf0;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --light-color: #f8f9fa;
+    --dark-color: #212529;
+}
+
+/* Переключатель темы */
+.theme-switcher {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+}
+
+/* Градиент для карточек */
+.bg-gradient-custom {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Анимации для карточек */
+.project-card {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Таймлайн для дневника */
+.timeline {
+    position: relative;
+    padding-left: 30px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #dee2e6;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: -22px;
+    top: 5px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    z-index: 1;
+}
+
+.timeline-content {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 3px solid var(--primary-color);
+}
+
+/* Стили для темной темы */
+.bg-dark .card {
+    background-color: #212529 !important;
+    border-color: #495057 !important;
+}
+
+.bg-dark .card-header {
+    background-color: #343a40 !important;
+    border-color: #495057 !important;
+}
+
+.bg-dark .card-title,
+.bg-dark .card-text,
+.bg-dark .h1, .bg-dark .h2, .bg-dark .h3, .bg-dark .h4, .bg-dark .h5, .bg-dark .h6,
+.bg-dark p, .bg-dark span, .bg-dark div {
+    color: #ffffff !important;
+}
+
+.bg-dark .text-muted {
+    color: #adb5bd !important;
+}
+
+.bg-dark .text-primary {
+    color: #0d6efd !important;
+}
+
+.bg-dark .text-success {
+    color: #198754 !important;
+}
+
+.bg-dark .text-warning {
+    color: #ffc107 !important;
+}
+
+.bg-dark .text-danger {
+    color: #dc3545 !important;
+}
+
+.bg-dark .text-info {
+    color: #0dcaf0 !important;
+}
+
+.bg-dark .text-secondary {
+    color: #6c757d !important;
+}
+
+.bg-dark .navbar-nav .nav-link {
+    color: #ffffff !important;
+}
+
+.bg-dark .navbar-nav .nav-link:hover {
+    color: #0d6efd !important;
+}
+
+.bg-dark .navbar-nav .nav-link.active {
+    color: #0d6efd !important;
+}
+
+.bg-dark .timeline-content {
+    background-color: #343a40 !important;
+    color: #ffffff !important;
+}
+
+.bg-dark .form-control {
+    background-color: #212529 !important;
+    border-color: #495057 !important;
+    color: #ffffff !important;
+}
+
+.bg-dark .form-control:focus {
+    background-color: #212529 !important;
+    border-color: #0d6efd !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.bg-dark .form-select {
+    background-color: #212529 !important;
+    border-color: #495057 !important;
+    color: #ffffff !important;
+}
+
+.bg-dark .form-select:focus {
+    background-color: #212529 !important;
+    border-color: #0d6efd !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.bg-dark .form-check-input:checked {
+    background-color: #0d6efd !important;
+    border-color: #0d6efd !important;
+}
+
+.bg-dark .form-check-label {
+    color: #ffffff !important;
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .theme-switcher {
+        top: 10px;
+        right: 10px;
+    }
+    
+    .timeline {
+        padding-left: 20px;
+    }
+    
+    .timeline::before {
+        left: 10px;
+    }
+    
+    .timeline-marker {
+        left: -17px;
+        width: 12px;
+        height: 12px;
+    }
+}
+
+/* Дополнительные утилиты */
+.text-shadow {
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.border-gradient {
+    border: 2px solid;
+    border-image: linear-gradient(45deg, #667eea, #764ba2) 1;
+}
+
+/* Стили для модальных окон */
+.modal-content {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.modal-header {
+    border-bottom: 1px solid #dee2e6;
+    border-radius: 10px 10px 0 0;
+}
+
+.modal-footer {
+    border-top: 1px solid #dee2e6;
+    border-radius: 0 0 10px 10px;
+}
+
+/* Стили для форм */
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.btn:focus {
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+/* Стили для прогресс-баров */
+.progress {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    transition: width 0.6s ease;
+}
+
+/* Стили для бейджей */
+.badge {
+    font-size: 0.75em;
+    padding: 0.5em 0.75em;
+}
+
+/* Стили для карточек контактов */
+.contact-item {
+    padding: 10px 0;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.contact-item:last-child {
+    border-bottom: none;
+}
+
+/* Анимация загрузки */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Стили для уведомлений */
+.alert {
+    border: none;
+    border-radius: 10px;
+}
+
+.alert-success {
+    background-color: #d1e7dd;
+    color: #0f5132;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #842029;
+}
+
+.alert-warning {
+    background-color: #fff3cd;
+    color: #664d03;
+}
+
+.alert-info {
+    background-color: #d1ecf1;
+    color: #055160;
+}
