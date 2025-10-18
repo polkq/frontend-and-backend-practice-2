@@ -114,20 +114,21 @@
             
             <!-- Projects Grid -->
             <section class="mb-5">
-                <div class="row g-4" id="projects-grid">
-                    <!-- Project 1: Личный сайт -->
-                    <div class="col-lg-4 col-md-6" data-category="html">
+                <div class="row g-4 justify-content-center" id="projects-grid">
+                    <!-- Project: МИРЭА -->
+                    <div class="col-lg-6 col-md-8" data-category="html">
                         <div class="card h-100 project-card" data-bs-toggle="modal" data-bs-target="#projectModal" data-project="1">
                             <div class="card-img-top bg-gradient-custom d-flex align-items-center justify-content-center" style="height: 200px;">
-                                <i class="bi bi-globe text-white" style="font-size: 4rem;"></i>
+                                <img src="images/image1.png" alt="МИРЭА" class="img-fluid" style="max-height: 150px; object-fit: contain;">
                             </div>
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title text-primary">
-                                    <i class="bi bi-globe me-2"></i>Личный сайт
+                                    <i class="bi bi-university me-2"></i>МИРЭА
                                 </h5>
                                 <p class="card-text flex-grow-1">
-                                    Сайт-портфолио на HTML, CSS и Bootstrap с адаптивным дизайном. 
-                                    Включает темную тему, интерактивные элементы и модальные окна.
+                                    Официальный сайт РТУ МИРЭА - ведущего технического университета России. 
+                                    Современный веб-ресурс с информацией об образовательных программах, 
+                                    научной деятельности и жизни университета.
                                 </p>
                                 <div class="mb-3">
                                     <div class="d-flex flex-wrap gap-1">
@@ -138,151 +139,7 @@
                                     </div>
                                 </div>
                                 <div class="text-muted small">
-                                    <i class="bi bi-calendar me-1"></i>Декабрь 2024
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Project 2: Todo-приложение -->
-                    <div class="col-lg-4 col-md-6" data-category="js">
-                        <div class="card h-100 project-card" data-bs-toggle="modal" data-bs-target="#projectModal" data-project="2">
-                            <div class="card-img-top bg-gradient-custom d-flex align-items-center justify-content-center" style="height: 200px;">
-                                <i class="bi bi-check2-square text-white" style="font-size: 4rem;"></i>
-                            </div>
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="card-title text-success">
-                                    <i class="bi bi-check2-square me-2"></i>Todo-приложение
-                                </h5>
-                                <p class="card-text flex-grow-1">
-                                    Приложение для управления задачами с использованием JavaScript. 
-                                    Включает добавление, редактирование, удаление и фильтрацию задач.
-                                </p>
-                                <div class="mb-3">
-                                    <div class="d-flex flex-wrap gap-1">
-                                        <span class="badge bg-success">JavaScript</span>
-                                        <span class="badge bg-success">LocalStorage</span>
-                                        <span class="badge bg-primary">HTML</span>
-                                        <span class="badge bg-primary">CSS</span>
-                                    </div>
-                                </div>
-                                <div class="text-muted small">
-                                    <i class="bi bi-calendar me-1"></i>Ноябрь 2024
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Project 3: Интернет-магазин -->
-                    <div class="col-lg-4 col-md-6" data-category="react">
-                        <div class="card h-100 project-card" data-bs-toggle="modal" data-bs-target="#projectModal" data-project="3">
-                            <div class="card-img-top bg-gradient-custom d-flex align-items-center justify-content-center" style="height: 200px;">
-                                <i class="bi bi-cart text-white" style="font-size: 4rem;"></i>
-                            </div>
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="card-title text-info">
-                                    <i class="bi bi-cart me-2"></i>Интернет-магазин
-                                </h5>
-                                <p class="card-text flex-grow-1">
-                                    Прототип интернет-магазина с корзиной товаров, фильтрацией и поиском. 
-                                    Использует React и внешние API для получения данных о товарах.
-                                </p>
-                                <div class="mb-3">
-                                    <div class="d-flex flex-wrap gap-1">
-                                        <span class="badge bg-info">React</span>
-                                        <span class="badge bg-info">API</span>
-                                        <span class="badge bg-warning">JavaScript</span>
-                                        <span class="badge bg-primary">CSS</span>
-                                    </div>
-                                </div>
-                                <div class="text-muted small">
-                                    <i class="bi bi-calendar me-1"></i>Октябрь 2024
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Project 4: Игра "Змейка" -->
-                    <div class="col-lg-4 col-md-6" data-category="js">
-                        <div class="card h-100 project-card" data-bs-toggle="modal" data-bs-target="#projectModal" data-project="4">
-                            <div class="card-img-top bg-gradient-custom d-flex align-items-center justify-content-center" style="height: 200px;">
-                                <i class="bi bi-controller text-white" style="font-size: 4rem;"></i>
-                            </div>
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="card-title text-warning">
-                                    <i class="bi bi-controller me-2"></i>Игра "Змейка"
-                                </h5>
-                                <p class="card-text flex-grow-1">
-                                    Классическая игра "Змейка" на JavaScript с Canvas API. 
-                                    Включает систему очков, уровни сложности и сохранение рекордов.
-                                </p>
-                                <div class="mb-3">
-                                    <div class="d-flex flex-wrap gap-1">
-                                        <span class="badge bg-warning">JavaScript</span>
-                                        <span class="badge bg-warning">Canvas</span>
-                                        <span class="badge bg-primary">HTML</span>
-                                        <span class="badge bg-primary">CSS</span>
-                                    </div>
-                                </div>
-                                <div class="text-muted small">
-                                    <i class="bi bi-calendar me-1"></i>Сентябрь 2024
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Project 5: Погодное приложение -->
-                    <div class="col-lg-4 col-md-6" data-category="js">
-                        <div class="card h-100 project-card" data-bs-toggle="modal" data-bs-target="#projectModal" data-project="5">
-                            <div class="card-img-top bg-gradient-custom d-flex align-items-center justify-content-center" style="height: 200px;">
-                                <i class="bi bi-cloud-sun text-white" style="font-size: 4rem;"></i>
-                            </div>
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="card-title text-info">
-                                    <i class="bi bi-cloud-sun me-2"></i>Погодное приложение
-                                </h5>
-                                <p class="card-text flex-grow-1">
-                                    Приложение для просмотра погоды с использованием внешнего API. 
-                                    Показывает текущую погоду и прогноз на несколько дней.
-                                </p>
-                                <div class="mb-3">
-                                    <div class="d-flex flex-wrap gap-1">
-                                        <span class="badge bg-info">API</span>
-                                        <span class="badge bg-warning">JavaScript</span>
-                                        <span class="badge bg-primary">HTML</span>
-                                        <span class="badge bg-primary">CSS</span>
-                                    </div>
-                                </div>
-                                <div class="text-muted small">
-                                    <i class="bi bi-calendar me-1"></i>Август 2024
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Project 6: Калькулятор -->
-                    <div class="col-lg-4 col-md-6" data-category="js">
-                        <div class="card h-100 project-card" data-bs-toggle="modal" data-bs-target="#projectModal" data-project="6">
-                            <div class="card-img-top bg-gradient-custom d-flex align-items-center justify-content-center" style="height: 200px;">
-                                <i class="bi bi-calculator text-white" style="font-size: 4rem;"></i>
-                            </div>
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="card-title text-secondary">
-                                    <i class="bi bi-calculator me-2"></i>Калькулятор
-                                </h5>
-                                <p class="card-text flex-grow-1">
-                                    Функциональный калькулятор на JavaScript с поддержкой основных математических операций. 
-                                    Включает историю вычислений и клавиатурный ввод.
-                                </p>
-                                <div class="mb-3">
-                                    <div class="d-flex flex-wrap gap-1">
-                                        <span class="badge bg-secondary">JavaScript</span>
-                                        <span class="badge bg-primary">HTML</span>
-                                        <span class="badge bg-primary">CSS</span>
-                                    </div>
-                                </div>
-                                <div class="text-muted small">
-                                    <i class="bi bi-calendar me-1"></i>Июль 2024
+                                    <i class="bi bi-calendar me-1"></i>2024
                                 </div>
                             </div>
                         </div>

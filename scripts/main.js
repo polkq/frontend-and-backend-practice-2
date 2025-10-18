@@ -66,99 +66,19 @@ document.addEventListener('DOMContentLoaded', function() {
 // Данные проектов
 const projectsData = {
     1: {
-        title: 'Личный сайт',
-        description: 'Сайт-портфолио на HTML, CSS и Bootstrap с адаптивным дизайном. Включает темную тему, интерактивные элементы и модальные окна.',
+        title: 'МИРЭА',
+        description: 'Официальный сайт РТУ МИРЭА - ведущего технического университета России. Современный веб-ресурс с информацией об образовательных программах, научной деятельности и жизни университета.',
         technologies: ['HTML', 'CSS', 'Bootstrap', 'JavaScript'],
-        date: 'Декабрь 2024',
-        status: 'Завершен',
-        link: 'https://example.com/personal-site',
-        code: 'https://github.com/username/personal-site',
+        date: '2024',
+        status: 'Активный',
+        link: 'https://www.mirea.ru/',
+        code: 'https://www.mirea.ru/',
         features: [
-            'Адаптивный дизайн',
-            'Темная/светлая тема',
-            'Интерактивные элементы',
-            'Модальные окна',
-            'Анимации и переходы'
-        ]
-    },
-    2: {
-        title: 'Todo-приложение',
-        description: 'Приложение для управления задачами с использованием JavaScript. Включает добавление, редактирование, удаление и фильтрацию задач.',
-        technologies: ['JavaScript', 'LocalStorage', 'HTML', 'CSS'],
-        date: 'Ноябрь 2024',
-        status: 'Завершен',
-        link: 'https://example.com/todo-app',
-        code: 'https://github.com/username/todo-app',
-        features: [
-            'Добавление задач',
-            'Редактирование задач',
-            'Удаление задач',
-            'Фильтрация по статусу',
-            'Сохранение в LocalStorage'
-        ]
-    },
-    3: {
-        title: 'Интернет-магазин',
-        description: 'Прототип интернет-магазина с корзиной товаров, фильтрацией и поиском. Использует React и внешние API для получения данных о товарах.',
-        technologies: ['React', 'API', 'JavaScript', 'CSS'],
-        date: 'Октябрь 2024',
-        status: 'В разработке',
-        link: 'https://example.com/shop',
-        code: 'https://github.com/username/shop',
-        features: [
-            'Каталог товаров',
-            'Корзина покупок',
-            'Фильтрация товаров',
-            'Поиск по названию',
-            'Интеграция с API'
-        ]
-    },
-    4: {
-        title: 'Игра "Змейка"',
-        description: 'Классическая игра "Змейка" на JavaScript с Canvas API. Включает систему очков, уровни сложности и сохранение рекордов.',
-        technologies: ['JavaScript', 'Canvas', 'HTML', 'CSS'],
-        date: 'Сентябрь 2024',
-        status: 'Завершен',
-        link: 'https://example.com/snake-game',
-        code: 'https://github.com/username/snake-game',
-        features: [
-            'Игровая логика',
-            'Canvas отрисовка',
-            'Система очков',
-            'Уровни сложности',
-            'Сохранение рекордов'
-        ]
-    },
-    5: {
-        title: 'Погодное приложение',
-        description: 'Приложение для просмотра погоды с использованием внешнего API. Показывает текущую погоду и прогноз на несколько дней.',
-        technologies: ['API', 'JavaScript', 'HTML', 'CSS'],
-        date: 'Август 2024',
-        status: 'Завершен',
-        link: 'https://example.com/weather-app',
-        code: 'https://github.com/username/weather-app',
-        features: [
-            'Текущая погода',
-            'Прогноз на неделю',
-            'Поиск по городу',
-            'Геолокация',
-            'Адаптивный дизайн'
-        ]
-    },
-    6: {
-        title: 'Калькулятор',
-        description: 'Функциональный калькулятор на JavaScript с поддержкой основных математических операций. Включает историю вычислений и клавиатурный ввод.',
-        technologies: ['JavaScript', 'HTML', 'CSS'],
-        date: 'Июль 2024',
-        status: 'Завершен',
-        link: 'https://example.com/calculator',
-        code: 'https://github.com/username/calculator',
-        features: [
-            'Базовые операции',
-            'История вычислений',
-            'Клавиатурный ввод',
-            'Научные функции',
-            'Адаптивный дизайн'
+            'Информация об университете',
+            'Образовательные программы',
+            'Научная деятельность',
+            'Студенческая жизнь',
+            'Контакты и новости'
         ]
     }
 };
