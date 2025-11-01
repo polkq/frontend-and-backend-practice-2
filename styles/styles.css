@@ -8,26 +8,84 @@
     --danger-color: #dc3545;
     --light-color: #f8f9fa;
     --dark-color: #212529;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-2xl: 3rem;
+    color-scheme: light dark;
 }
 
-/* Sticky Footer */
+/* Базовый каркас с современными единицами высоты */
 html, body {
     height: 100%;
 }
 
 body {
+    margin: 0;
+    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    background: #f8fafc;
+    color: #0b1020;
+}
+
+.page {
+    min-height: 100vh; /* фолбэк для старых браузеров */
+    min-height: 100svh; /* стабильный минимум: высота экрана с панелями */
+    min-height: 100dvh; /* на новых браузерах — актуальная видимая высота */
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
 }
 
 main {
     flex: 1;
 }
 
-footer {
-    margin-top: auto;
-    width: 100%;
+/* Skip-link для доступности */
+.skip-link {
+    position: absolute;
+    inset-inline-start: 1rem;
+    inset-block-start: -100%;
+    z-index: 10000;
+    padding: .5rem .75rem;
+    background: #111;
+    color: #fff;
+    border-radius: .5rem;
+    text-decoration: none;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+    inset-block-start: 1rem;
+}
+
+/* Видимый фокус */
+:focus-visible {
+    outline: 3px solid #2563eb;
+    outline-offset: 2px;
+}
+
+a, button, input, textarea {
+    outline-offset: 2px;
+}
+
+/* Крупные цели на устройствах с pointer:coarse */
+@media (pointer: coarse) {
+    a, button, .nav__link {
+        min-height: 44px;
+        padding: .75rem 1rem;
+    }
+}
+
+/* Sticky-хедер с safe areas */
+nav.nav {
+    position: sticky !important;
+    top: 0;
+    /* Прибавки для вырезов/жестовых панелей */
+    padding-block-start: calc(.75rem + env(safe-area-inset-top));
+    padding-block-end: .75rem;
+    padding-inline-start: calc(var(--space-md, 1rem) + env(safe-area-inset-left));
+    padding-inline-end: calc(var(--space-md, 1rem) + env(safe-area-inset-right));
+    z-index: 100;
+    isolation: isolate; /* свой контекст для теней/фильтров */
+    box-shadow: 0 1px 3px rgba(0,0,0,.1);
 }
 
 /* Переключатель темы */
@@ -38,20 +96,54 @@ footer {
     z-index: 1050;
 }
 
+/* Герой-картинка (LCP) */
+.hero__photo {
+    inline-size: 200px; /* или: clamp(150px, 22vw, 200px); */
+    block-size: auto;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
 /* Градиент для карточек */
 .bg-gradient-custom {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
-/* Анимации для карточек */
+/* Проекты/карточки — авто-адаптивная Grid-сетка (для главной страницы) */
+.projects-preview {
+    margin-block: var(--space-2xl, 3rem);
+}
+
+.projects-preview__grid {
+    display: grid; /* включаем CSS Grid */
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    gap: var(--space-lg, 1.5rem); /* промежутки между колонками/строками */
+}
+
+/* Для страницы проектов используем контейнерные запросы */
+.projects-area .projects-list {
+    display: grid;
+    grid-template-columns: 1fr; /* одна колонка по умолчанию */
+    gap: var(--space-lg, 1.5rem);
+}
+
 .project-card {
-    transition: all 0.3s ease;
+    background: #fff;
+    border-radius: .75rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    transition: transform .2s ease, box-shadow .2s ease;
+    min-width: 0; /* разрешаем контенту ужиматься */
     cursor: pointer;
 }
 
 .project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    transform: translateY(-4px);
+}
+
+.project-card__title,
+.project-card__description {
+    overflow-wrap: anywhere;
 }
 
 /* Таймлайн для дневника */
@@ -208,6 +300,92 @@ footer {
 
 .fade-in {
     animation: fadeIn 0.5s ease-in-out;
+}
+
+
+/* Контейнерные запросы (CQ) для компонента */
+@supports (container-type: inline-size) {
+    .projects-area {
+        /* Делаем область контейнером для CQ */
+        container-type: inline-size; /* реагируем на ширину (inline) */
+        container-name: projects; /* по имени удобнее таргетировать */
+    }
+
+    /* Когда КОНТЕЙНЕР шире 640px — 2 колонки */
+    @container projects (min-width: 640px) {
+        .projects-list {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    /* Когда шире 960px — 3 колонки */
+    @container projects (min-width: 960px) {
+        .projects-list {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+}
+
+/* Плавные размеры с clamp() */
+.section-title {
+    font-size: clamp(1.5rem, 1.1rem + 2vw, 2rem);
+}
+
+.hero__greeting {
+    font-size: clamp(1.25rem, 1rem + 1.2vw, 1.8rem);
+}
+
+.main {
+    padding-inline: clamp(.75rem, .5rem + 1vw, 2rem);
+}
+
+/* Плавные поля секций */
+.section, .main {
+    padding-inline: clamp(1rem, calc(.5rem + 1vw), 2rem);
+}
+
+/* Кнопки: минимальная зона клика 44px (WCAG) */
+.button {
+    padding-block: max(.5rem, calc((44px - 1em)/2));
+}
+
+/* Full-bleed для геро-блока (если нужен фон на всю ширину) */
+.hero--bleed {
+    margin-inline: calc(50% - 50vw);
+    padding-inline: calc(50vw - 50%);
+}
+
+/* Safe-area в футере (жестовая панель) */
+.footer {
+    padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+}
+
+/* Доступность: визуально скрытый контент */
+.visually-hidden {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Повышенный контраст (прогрессивно) */
+@media (prefers-contrast: more) {
+    .button, .filter {
+        box-shadow: inset 0 0 0 2px #fff;
+    }
+}
+
+/* Уважение к снижению движения */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
 }
 
 /* Адаптивность */
