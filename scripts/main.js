@@ -187,56 +187,130 @@ document.addEventListener('DOMContentLoaded', function() {
             
             if (validateForm()) {
                 // Показываем модальное окно успеха
-                const successModal = new bootstrap.Modal(document.getElementById('successModal'));
-                successModal.show();
+                const successModal = document.getElementById('successModal');
+                if (successModal) {
+                    const modal = new bootstrap.Modal(successModal);
+                    modal.show();
+                    
+                    // Фокусируемся на кнопке закрытия при открытии модалки
+                    successModal.addEventListener('shown.bs.modal', function() {
+                        const closeBtn = successModal.querySelector('.btn-close, .btn-primary');
+                        if (closeBtn) {
+                            closeBtn.focus();
+                        }
+                    }, { once: true });
+                }
                 
                 // Очищаем форму
                 contactForm.reset();
                 
-                // Убираем классы валидации
+                // Сбрасываем состояния доступности
                 const inputs = contactForm.querySelectorAll('.form-control, .form-check-input');
                 inputs.forEach(input => {
                     input.classList.remove('is-valid', 'is-invalid');
+                    input.setAttribute('aria-invalid', 'false');
                 });
+                
+                // Обновляем статус формы
+                const formStatus = document.getElementById('form-status');
+                if (formStatus) {
+                    formStatus.textContent = '';
+                }
+            } else {
+                // Если форма невалидна, объявляем об ошибках
+                const formStatus = document.getElementById('form-status');
+                if (formStatus) {
+                    formStatus.textContent = 'В форме обнаружены ошибки. Пожалуйста, проверьте все обязательные поля.';
+                }
             }
+        });
+        
+        // Реал-тайм валидация при потере фокуса
+        const formInputs = contactForm.querySelectorAll('input, textarea');
+        formInputs.forEach(input => {
+            input.addEventListener('blur', function() {
+                validateForm();
+            });
         });
     }
 });
 
-// Валидация формы
+// Валидация формы с поддержкой доступности
 function validateForm() {
     const form = document.getElementById('contactForm');
+    if (!form) return false;
+    
     const inputs = form.querySelectorAll('input[required], textarea[required], select[required]');
     let isValid = true;
+    const formStatus = document.getElementById('form-status');
     
+    // Сбрасываем предыдущие состояния
     inputs.forEach(input => {
+        input.classList.remove('is-invalid', 'is-valid');
+        input.setAttribute('aria-invalid', 'false');
+        const errorElement = form.querySelector(`#${input.id}-error`) || 
+                           form.querySelector(`[id*="${input.id}"]`)?.querySelector('.invalid-feedback');
+        if (errorElement) {
+            errorElement.textContent = errorElement.getAttribute('data-original-message') || errorElement.textContent;
+        }
+    });
+    
+    // Валидация каждого поля
+    inputs.forEach(input => {
+        let fieldValid = true;
+        const errorId = `${input.id}-error`;
+        const errorElement = document.getElementById(errorId);
+        
         if (input.type === 'checkbox') {
             if (!input.checked) {
-                input.classList.add('is-invalid');
-                isValid = false;
-            } else {
-                input.classList.remove('is-invalid');
-                input.classList.add('is-valid');
+                fieldValid = false;
             }
         } else if (input.type === 'email') {
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(input.value)) {
-                input.classList.add('is-invalid');
-                isValid = false;
-            } else {
-                input.classList.remove('is-invalid');
-                input.classList.add('is-valid');
+            if (!emailRegex.test(input.value.trim())) {
+                fieldValid = false;
             }
         } else {
             if (input.value.trim() === '') {
-                input.classList.add('is-invalid');
-                isValid = false;
-            } else {
-                input.classList.remove('is-invalid');
-                input.classList.add('is-valid');
+                fieldValid = false;
+            }
+        }
+        
+        if (!fieldValid) {
+            input.classList.add('is-invalid');
+            input.setAttribute('aria-invalid', 'true');
+            
+            // Показываем сообщение об ошибке
+            if (errorElement) {
+                errorElement.style.display = 'block';
+                // Сохраняем оригинальное сообщение если его нет
+                if (!errorElement.getAttribute('data-original-message')) {
+                    errorElement.setAttribute('data-original-message', errorElement.textContent);
+                }
+            }
+            
+            // Фокусируемся на первом невалидном поле
+            if (isValid) {
+                input.focus();
+            }
+            isValid = false;
+        } else {
+            input.classList.add('is-valid');
+            input.setAttribute('aria-invalid', 'false');
+            if (errorElement) {
+                errorElement.style.display = 'none';
             }
         }
     });
+    
+    // Обновляем статус формы для скринридеров
+    if (formStatus) {
+        if (isValid) {
+            formStatus.textContent = '';
+        } else {
+            formStatus.textContent = 'В форме есть ошибки. Пожалуйста, исправьте их.';
+        }
+    }
     
     return isValid;
 }

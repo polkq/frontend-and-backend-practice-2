@@ -646,6 +646,102 @@ h6 { font-size: clamp(0.9rem, 0.85rem + 0.4vw, 1.1rem); }
     box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
 }
 
+/* Улучшенная видимость фокуса для доступности */
+.form-control:focus-visible,
+.form-select:focus-visible,
+.form-check-input:focus-visible {
+    outline: 3px solid #0066cc;
+    outline-offset: 2px;
+    border-color: #0066cc;
+}
+
+/* Состояния валидности с улучшенной видимостью */
+.form-control.is-invalid:focus {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+.form-control.is-valid:focus {
+    border-color: #198754;
+    box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.25);
+}
+
+/* Улучшенная видимость для чекбоксов */
+.form-check-input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.form-check-input.is-invalid:focus {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+/* Сообщения об ошибках с хорошей видимостью */
+.invalid-feedback {
+    display: none;
+    color: #dc3545;
+    font-size: .875rem;
+    margin-top: .25rem;
+}
+
+.is-invalid ~ .invalid-feedback,
+.is-invalid ~ .invalid-tooltip {
+    display: block;
+}
+
+/* Улучшение контраста для обязательных полей */
+.text-danger[aria-label="обязательное поле"] {
+    color: #dc3545 !important;
+    font-weight: bold;
+}
+
+/* Скрытие элементов от скринридеров */
+.visually-hidden {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Улучшение для fieldset и legend */
+fieldset {
+    border: 1px solid #dee2e6;
+    border-radius: .375rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+fieldset legend.visually-hidden {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Улучшенная видимость ссылок */
+a:focus-visible {
+    outline: 3px solid #0066cc;
+    outline-offset: 2px;
+    border-radius: 2px;
+}
+
+/* Улучшенная видимость кнопок */
+.btn:focus-visible {
+    outline: 3px solid #0066cc;
+    outline-offset: 2px;
+}
+
 /* Адаптивные поля ввода */
 .form-control,
 .form-select {
