@@ -81,20 +81,25 @@
                             <div class="col-md-3 text-center mb-3 mb-md-0">
                                 <figure class="hero__image">
                                     <picture>
-                                        <!-- Современные форматы - если будут созданы -->
-                                        <source
-                                            type="image/avif"
-                                            srcset="images/photo.png"
-                                            sizes="200px">
+                                        <!-- Современные форматы для разных экранов -->
                                         <source
                                             type="image/webp"
-                                            srcset="images/photo.png"
-                                            sizes="200px">
-                                        <!-- Запасной формат -->
-                                        <img class="hero__photo"
+                                            srcset="images/photo.png 150w, images/photo.png 200w, images/photo.png 300w"
+                                            sizes="(max-width: 480px) 150px, (max-width: 768px) 180px, 200px">
+                                        <!-- JPEG/PNG fallback с поддержкой разных размеров -->
+                                        <source
+                                            media="(max-width: 480px)"
+                                            srcset="images/photo.png 150w"
+                                            sizes="150px">
+                                        <source
+                                            media="(max-width: 768px)"
+                                            srcset="images/photo.png 180w"
+                                            sizes="180px">
+                                        <!-- Запасной формат с Retina поддержкой -->
+                                        <img class="hero__photo responsive-image"
                                             src="images/photo.png"
-                                            srcset="images/photo.png 200w"
-                                            sizes="200px"
+                                            srcset="images/photo.png 200w, images/icons/photo.png 400w"
+                                            sizes="(max-width: 480px) 150px, (max-width: 768px) 180px, 200px"
                                             width="200" height="200"
                                             alt="Портрет студента"
                                             fetchpriority="high">
@@ -189,7 +194,18 @@
                         <div class="projects-preview__grid">
                             <div class="project-card" data-bs-toggle="modal" data-bs-target="#projectModal" data-project="1">
                                 <div class="card-img-top bg-gradient-custom d-flex align-items-center justify-content-center" style="height: 150px;">
-                                    <img src="images/mirea-logo.svg" alt="МИРЭА" class="img-fluid" style="max-height: 120px; object-fit: contain;" width="120" height="120">
+                                    <picture>
+                                        <source
+                                            type="image/svg+xml"
+                                            srcset="images/mirea-logo.svg">
+                                        <img src="images/mirea-logo.svg" 
+                                            alt="МИРЭА" 
+                                            class="responsive-image" 
+                                            style="max-height: 120px; object-fit: contain;" 
+                                            width="120" 
+                                            height="120"
+                                            loading="lazy">
+                                    </picture>
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title project-card__title">

@@ -96,13 +96,150 @@ nav.nav {
     z-index: 1050;
 }
 
+/* ===== АДАПТИВНЫЕ ИЗОБРАЖЕНИЯ ===== */
+
+/* Базовое адаптивное изображение */
+.responsive-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--radius, .5rem);
+}
+
+/* Picture element */
+picture {
+    display: block;
+}
+
 /* Герой-картинка (LCP) */
 .hero__photo {
-    inline-size: 200px; /* или: clamp(150px, 22vw, 200px); */
+    inline-size: clamp(150px, 22vw, 200px);
     block-size: auto;
     border-radius: 50%;
     object-fit: cover;
     box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    max-width: 100%;
+}
+
+/* Retina display поддержка */
+.retina-image {
+    width: 100px;
+    height: auto;
+    display: block;
+    max-width: 100%;
+}
+
+/* Изображения с поддержкой Retina через srcset */
+img[srcset] {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Object-fit свойства */
+.object-fit-cover {
+    object-fit: cover;
+}
+
+.object-fit-contain {
+    object-fit: contain;
+}
+
+.object-fit-fill {
+    object-fit: fill;
+}
+
+/* Адаптивная галерея */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-lg, 1.5rem);
+}
+
+.gallery__item {
+    overflow: hidden;
+    border-radius: var(--radius, .5rem);
+}
+
+.gallery__image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform .2s ease;
+    display: block;
+}
+
+.gallery__image:hover {
+    transform: scale(1.05);
+}
+
+/* Изображения в карточках проектов */
+.project-card img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+.project-card .card-img-top {
+    overflow: hidden;
+}
+
+/* Адаптивность для изображений */
+@media (max-width: 768px) {
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .gallery__image {
+        height: 150px;
+    }
+    
+    .hero__photo {
+        inline-size: clamp(120px, 25vw, 180px);
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery {
+        grid-template-columns: 1fr;
+    }
+    
+    .gallery__image {
+        height: 200px;
+    }
+}
+
+/* Поддержка высоких экранов */
+@media (min-height: 800px) and (min-width: 1200px) {
+    .gallery__image {
+        height: 250px;
+    }
+}
+
+/* Адаптивность для печати */
+@media print {
+    .hero__photo,
+    .responsive-image {
+        max-width: 100%;
+        page-break-inside: avoid;
+    }
+    
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+        page-break-inside: avoid;
+    }
+    
+    picture {
+        display: block;
+    }
+}
+
+/* Темная тема для изображений */
+@media (prefers-color-scheme: dark) {
+    .project-card img,
+    .gallery__image {
+        filter: brightness(0.95);
+    }
 }
 
 /* Градиент для карточек */
@@ -388,6 +525,72 @@ nav.nav {
     }
 }
 
+/* ===== МАСШТАБИРОВАНИЕ ЭЛЕМЕНТОВ ===== */
+
+/* Адаптивное масштабирование типографики */
+h1 { font-size: clamp(1.75rem, 1.5rem + 1.5vw, 2.5rem); }
+h2 { font-size: clamp(1.5rem, 1.25rem + 1.2vw, 2rem); }
+h3 { font-size: clamp(1.25rem, 1.1rem + 1vw, 1.75rem); }
+h4 { font-size: clamp(1.1rem, 1rem + 0.8vw, 1.5rem); }
+h5 { font-size: clamp(1rem, 0.9rem + 0.6vw, 1.25rem); }
+h6 { font-size: clamp(0.9rem, 0.85rem + 0.4vw, 1.1rem); }
+
+/* Адаптивные контейнеры */
+.container-fluid,
+.container {
+    padding-inline: clamp(1rem, calc(.5rem + 1vw), 2rem);
+}
+
+/* Адаптивные карточки */
+.card {
+    border-radius: clamp(.5rem, .4rem + .5vw, .75rem);
+    padding: clamp(1rem, .8rem + 1vw, 1.5rem);
+}
+
+/* Адаптивные отступы секций */
+.section,
+.mb-5 {
+    margin-bottom: clamp(2rem, 1.5rem + 2vw, 3rem) !important;
+}
+
+.mb-4 {
+    margin-bottom: clamp(1.5rem, 1.2rem + 1.5vw, 2rem) !important;
+}
+
+/* Адаптивные иконки */
+.bi {
+    font-size: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);
+}
+
+/* Адаптивные бейджи */
+.badge {
+    font-size: clamp(.7rem, .65rem + .3vw, .85rem);
+    padding: clamp(.25rem, .2rem + .3vw, .5rem) clamp(.5rem, .4rem + .5vw, .75rem);
+}
+
+/* Адаптивные модальные окна */
+@media (max-width: 768px) {
+    .modal-dialog {
+        margin: .5rem;
+        max-width: calc(100% - 1rem);
+    }
+}
+
+/* Улучшение для touch-устройств */
+@media (pointer: coarse) {
+    .btn,
+    a,
+    button {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    .form-check-input {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+}
+
 /* Адаптивность */
 @media (max-width: 768px) {
     .theme-switcher {
@@ -437,10 +640,86 @@ nav.nav {
     border-radius: 0 0 10px 10px;
 }
 
-/* Стили для форм */
+/* ===== АДАПТИВНЫЕ ФОРМЫ ===== */
 .form-control:focus {
     border-color: var(--primary-color);
     box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+/* Адаптивные поля ввода */
+.form-control,
+.form-select {
+    width: 100%;
+    padding: clamp(.5rem, .4rem + .5vw, .75rem);
+    font-size: clamp(.875rem, .8rem + .5vw, 1rem);
+}
+
+/* Адаптивные кнопки */
+.btn {
+    padding-block: max(.5rem, calc((44px - 1em)/2));
+    padding-inline: clamp(.75rem, .5rem + 1vw, 1.25rem);
+    font-size: clamp(.875rem, .8rem + .5vw, 1rem);
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .form-control,
+    .form-select {
+        font-size: 16px; /* Предотвращает зум на iOS */
+    }
+    
+    .btn {
+        width: 100%;
+        margin-bottom: .5rem;
+    }
+    
+    .btn-group {
+        flex-direction: column;
+    }
+}
+
+/* Адаптивные таблицы */
+.table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 768px) {
+    /* Таблицы на мобильных - превращаем в карточки */
+    .table-responsive table {
+        border: 0;
+    }
+    
+    .table-responsive thead {
+        display: none;
+    }
+    
+    .table-responsive tr {
+        display: block;
+        margin-bottom: 1rem;
+        border: 1px solid #dee2e6;
+        border-radius: .5rem;
+        padding: .75rem;
+    }
+    
+    .table-responsive td {
+        display: block;
+        text-align: right;
+        border: none;
+        padding: .5rem;
+        border-bottom: 1px solid #f1f5f9;
+    }
+    
+    .table-responsive td::before {
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        color: var(--primary-color);
+    }
+    
+    .table-responsive td:last-child {
+        border-bottom: 0;
+    }
 }
 
 .btn:focus {
