@@ -1,9 +1,10 @@
 // ===== ОСНОВНЫЕ ФУНКЦИИ =====
 
-// Переключатель темы
+// Переключатель темы с поддержкой aria-pressed
 function toggleTheme() {
     const body = document.body;
     const themeIcon = document.getElementById('theme-icon');
+    const themeButton = document.querySelector('[aria-label="Переключить тему"]');
     
     if (body.classList.contains('bg-light')) {
         // Переключаем на темную тему
@@ -23,7 +24,14 @@ function toggleTheme() {
         });
         
         // Обновляем иконку
-        themeIcon.className = 'bi bi-sun';
+        if (themeIcon) {
+            themeIcon.className = 'bi bi-sun';
+        }
+        
+        // Обновляем aria-pressed
+        if (themeButton) {
+            themeButton.setAttribute('aria-pressed', 'true');
+        }
         
         // Сохраняем выбор
         localStorage.setItem('theme', 'dark');
@@ -45,7 +53,14 @@ function toggleTheme() {
         });
         
         // Обновляем иконку
-        themeIcon.className = 'bi bi-moon';
+        if (themeIcon) {
+            themeIcon.className = 'bi bi-moon';
+        }
+        
+        // Обновляем aria-pressed
+        if (themeButton) {
+            themeButton.setAttribute('aria-pressed', 'false');
+        }
         
         // Сохраняем выбор
         localStorage.setItem('theme', 'light');
@@ -55,10 +70,46 @@ function toggleTheme() {
 // Загружаем сохраненную тему при загрузке страницы
 document.addEventListener('DOMContentLoaded', function() {
     const savedTheme = localStorage.getItem('theme') || 'light';
+    const themeButton = document.querySelector('[aria-label="Переключить тему"]');
+    
+    // Устанавливаем правильное значение aria-pressed
+    if (themeButton) {
+        themeButton.setAttribute('aria-pressed', savedTheme === 'dark' ? 'true' : 'false');
+    }
     
     if (savedTheme === 'dark') {
         toggleTheme(); // Применяем темную тему
     }
+    
+    // Улучшение доступности для Bootstrap модальных окон
+    const modals = document.querySelectorAll('.modal');
+    modals.forEach(modal => {
+        // Обработка открытия модалки
+        modal.addEventListener('show.bs.modal', function() {
+            // Скрываем основной контент от скринридера
+            const mainContent = document.querySelector('main');
+            if (mainContent) {
+                mainContent.setAttribute('aria-hidden', 'true');
+            }
+        });
+        
+        // Обработка закрытия модалки
+        modal.addEventListener('hidden.bs.modal', function() {
+            // Возвращаем видимость основному контенту
+            const mainContent = document.querySelector('main');
+            if (mainContent) {
+                mainContent.removeAttribute('aria-hidden');
+            }
+        });
+        
+        // Обработка показа модалки - фокус на кнопке закрытия
+        modal.addEventListener('shown.bs.modal', function() {
+            const closeButton = modal.querySelector('.btn-close, [data-bs-dismiss="modal"]');
+            if (closeButton) {
+                closeButton.focus();
+            }
+        });
+    });
 });
 
 // ===== ФУНКЦИИ ДЛЯ СТРАНИЦЫ ПРОЕКТОВ =====

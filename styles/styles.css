@@ -696,6 +696,59 @@ h6 { font-size: clamp(0.9rem, 0.85rem + 0.4vw, 1.1rem); }
     font-weight: bold;
 }
 
+/* Улучшение контрастности для текста (WCAG AA минимум 4.5:1) */
+.text-muted {
+    color: #6c757d !important; /* Контрастность ~4.8:1 на белом фоне */
+}
+
+.opacity-75 {
+    opacity: 0.85 !important; /* Улучшаем контрастность для полупрозрачного текста */
+}
+
+/* Улучшение контрастности для кнопок навигации */
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.9) !important; /* Улучшенный контраст */
+}
+
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link:focus {
+    color: rgba(255, 255, 255, 1) !important;
+}
+
+/* Улучшение контрастности для footer */
+.footer {
+    background-color: #212529 !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.footer a {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.footer a:hover,
+.footer a:focus {
+    color: rgba(255, 255, 255, 1) !important;
+}
+
+/* Минимальный размер touch-целей (44x44px для WCAG) */
+.btn-sm {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0.5rem 1rem;
+}
+
+.btn-close {
+    min-width: 44px;
+    min-height: 44px;
+}
+
+/* Улучшение для маленьких кнопок */
+@media (max-width: 768px) {
+    .btn-sm {
+        padding: 0.75rem 1.25rem;
+    }
+}
+
 /* Скрытие элементов от скринридеров */
 .visually-hidden {
     position: absolute !important;

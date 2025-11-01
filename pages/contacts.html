@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="Свяжитесь со мной - контактная информация и форма обратной связи для студентов и работодателей. Email, телефон, социальные сети.">
+    <meta name="keywords" content="контакты, обратная связь, студент, разработчик, портфолио">
     <title>Контакты - Портфолио студента</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
@@ -44,6 +46,7 @@
             <div class="container">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Переключить навигацию">
                     <span class="navbar-toggler-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Меню навигации</span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
@@ -277,13 +280,13 @@
                         </div>
                         <div class="card-body">
                             <div class="d-flex gap-2 flex-wrap" role="group" aria-label="Социальные сети">
-                                <a href="#" class="btn btn-outline-primary btn-sm" aria-label="Связаться через Telegram">
+                                <a href="https://t.me/username" class="btn btn-outline-primary btn-sm" aria-label="Связаться через Telegram" target="_blank" rel="noopener noreferrer">
                                     <i class="bi bi-telegram me-1" aria-hidden="true"></i>Telegram
                                 </a>
-                                <a href="#" class="btn btn-outline-info btn-sm" aria-label="Связаться через Discord">
+                                <a href="https://discord.com/users/username" class="btn btn-outline-info btn-sm" aria-label="Связаться через Discord" target="_blank" rel="noopener noreferrer">
                                     <i class="bi bi-discord me-1" aria-hidden="true"></i>Discord
                                 </a>
-                                <a href="#" class="btn btn-outline-success btn-sm" aria-label="Связаться через WhatsApp">
+                                <a href="https://wa.me/79001234567" class="btn btn-outline-success btn-sm" aria-label="Связаться через WhatsApp" target="_blank" rel="noopener noreferrer">
                                     <i class="bi bi-whatsapp me-1" aria-hidden="true"></i>WhatsApp
                                 </a>
                             </div>
@@ -348,7 +351,7 @@
     </div>
 
     <!-- Success Modal -->
-    <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="successModalLabel" aria-describedby="successModalDesc" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -357,11 +360,11 @@
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть диалоговое окно"></button>
                 </div>
-                <div class="modal-body" role="alert" aria-live="polite">
+                <div class="modal-body" id="successModalDesc" role="alert" aria-live="polite">
                     <p>Спасибо за ваше сообщение! Я получила его и отвечу в ближайшее время.</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Понятно</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Закрыть окно подтверждения">Понятно</button>
                 </div>
             </div>
         </div>
